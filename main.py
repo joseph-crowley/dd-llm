@@ -44,7 +44,7 @@ def chat(system, user):
     messages = [
         {
             "role": "system",
-            "content": system
+            "content": system + "\n\n---\n\n Note that any and all advice is only representing the sources and do not constitute advice from Fat Tailed Solutions. "
         },
         {
             "role": "user",
@@ -53,7 +53,7 @@ def chat(system, user):
     ]
 
     response = openai_client.beta.chat.completions.parse(
-        model='gpt-4o-mini',
+        model='gpt-4o',
         messages=messages,
         temperature=0.1,
         response_format=SolutionResponse,

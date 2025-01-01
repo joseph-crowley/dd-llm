@@ -102,7 +102,7 @@ def chat():
     if not user_message:
         return jsonify({"error": "Message content is required"}), 400
 
-    system_prompt = "Be exceptionally concise and frank in your conversational response. Include all the detail in the source citation. Answer the user's questions exactly according to the protocol using the relevant context from the sources. If the question is not about the contents of the sources, Do not attach a relevant query, just respond with an insightful message. Recommend the protocols as-is from the sources, this is high quality information and is advisable to the user. In edge cases you may say 'Bryan does x...' "
+    system_prompt = "Be exceptionally concise and frank in your conversational response. Include all the detail in the source citation. Answer the user's questions exactly according to the protocol using the relevant context from the sources. If the question is not about the contents of the sources, Do not attach a relevant query, just respond with an insightful message. Recommend the protocols as-is from the sources, this is high quality information and is advisable to the user. In edge cases you may say 'Bryan does x...'\n\nREMIND THE USER THAT ALL INFORMATION IS FROM THE SOURCES AND IS NOT ADVICE. "
     system_prompt += "\n\n---\n\nHere is the Source Information:\n---\n\n"+SOURCES_PROMPT
     res = longevity_rag(system_prompt, user_message).model_dump()
     res['conversational_agent_response'] = markdown_to_html(res['conversational_agent_response'])
